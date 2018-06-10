@@ -5,13 +5,18 @@
 <html lang="en">
 <head>
 <spring:url value="/static/js/jquery.min.js" var="jqueryJs" />
+<spring:url value="/static/css/bootstrap.min.css" var="bootstrap" />
 <script src="${jqueryJs}"></script>
-<title>Telusko InterShip</title>
+<link href="${bootstrap}" rel="stylesheet" />
+ <title>Telusko InterShip</title>
 </head>
 <body>
 
-<div id="table-data"></div>
-	
+<div class="panel panel-default">
+  <div class="panel-body">
+   <div id="table-data"></div>
+  </div>
+</div>
 </body>
 
 <script>
@@ -32,7 +37,6 @@ function generateTable(data){
 		textToAppend +="<h3>"+key + "</h3>";
 		textToAppend +="<hr />";
 		$.each(value, function(k,v){
-			textToAppend +="<br />";
 			textToAppend +="<h4>"+k + "</h4>";
 			textToAppend += makeTable(v);
 		});
@@ -44,10 +48,10 @@ function generateTable(data){
 
 function makeTable(data){
 	var textToAppend ="";
-	 textToAppend = '<table border=1>';
+	 textToAppend = '<table class="table table-bordered">';
     var header = "<thead><tr>";
     for (var k in data[0]){
-    	header += "<th>" + k + "</th>";
+    	header += "<th>" + k.toUpperCase() + "</th>";
     }
     header += "</tr></thead>";
     textToAppend+=header;
